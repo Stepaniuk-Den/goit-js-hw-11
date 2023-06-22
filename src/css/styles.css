@@ -7,6 +7,8 @@ body {
   margin-bottom: 20px;
 }
 .search-form {
+  z-index: 10;
+  position: fixed;
   display: flex;
   justify-content: center;
   /* position: absolute; */
@@ -20,6 +22,7 @@ body {
 }
 
 .load-more {
+  margin-top: 10px;
   margin-left: 45%;
   padding: 5px 10px;
   border-radius: 15px;
@@ -37,6 +40,7 @@ body {
 }
 
 .gallery {
+  padding-top: 90px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -48,7 +52,7 @@ body {
 }
 
 .photo-card {
-  margin: 20px 0;
+  /* margin: 20px 0; */
   width: 320px;
   border-radius: 2%;
   overflow: hidden;

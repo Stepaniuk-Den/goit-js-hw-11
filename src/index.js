@@ -35,6 +35,7 @@ async function handlerSubmit(evt) {
   query = evt.currentTarget.searchQuery.value;
   refs.gallery.innerHTML = '';
   page = 1;
+  refs.btnLoadMore.hidden = true;
   try {
     const data = await fetchImages(query, page);
     totalHits = data.data.totalHits;
@@ -48,13 +49,10 @@ async function handlerSubmit(evt) {
       'Ok'
     );
   } finally {
-    if (totalHits < 40) {
-      refs.btnLoadMore.hidden = true;
-    } else if (!totalHits) {
+    if (!totalHits) {
       Notiflix.Notify.info(
         'Sorry, there are no images matching your search query. Please try again.'
       );
-      refs.btnLoadMore.hidden = true;
     } else {
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
       refs.btnLoadMore.hidden = false;
