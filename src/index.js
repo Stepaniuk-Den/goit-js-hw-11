@@ -2,8 +2,8 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import { createMarkup } from '../markup';
-import { fetchImages } from '../serviceAPI';
+import { createMarkup } from './markup';
+import { fetchImages } from './serviceAPI';
 
 let page = 1;
 let query = '';
