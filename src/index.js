@@ -27,12 +27,14 @@ async function handlerClickMore() {
   refs.gallery.insertAdjacentHTML('beforeend', createMarkup(data.data.hits));
   modal.refresh();
   checkLoadMore();
+  scroll();
 }
 
 async function handlerSubmit(evt) {
   evt.preventDefault();
   query = evt.currentTarget.searchQuery.value;
   refs.gallery.innerHTML = '';
+  page = 1;
   try {
     const data = await fetchImages(query, page);
     totalHits = data.data.totalHits;
@@ -46,7 +48,7 @@ async function handlerSubmit(evt) {
       'Ok'
     );
   } finally {
-    if (!totalHits) {
+    if (!totalHits || totalHits < 40) {
       Notiflix.Notify.info(
         'Sorry, there are no images matching your search query. Please try again.'
       );
@@ -75,11 +77,13 @@ const modal = new SimpleLightbox('.gallery a', {
   closeText: '✖',
 });
 
-const { height: cardHeight } = document
-  .querySelector('.gallery')
-  .firstElementChild.getBoundingClientRect();
+function scroll() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
 
-window.scrollBy({
-  top: cardHeight * 2,
-  behavior: 'smooth',
-});
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
+}
