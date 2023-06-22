@@ -48,10 +48,12 @@ async function handlerSubmit(evt) {
       'Ok'
     );
   } finally {
-    if (!totalHits || totalHits < 40) {
+    if (!totalHits) {
       Notiflix.Notify.info(
         'Sorry, there are no images matching your search query. Please try again.'
       );
+      refs.btnLoadMore.hidden = true;
+    } else if (totalHits < 40) {
       refs.btnLoadMore.hidden = true;
     } else {
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
